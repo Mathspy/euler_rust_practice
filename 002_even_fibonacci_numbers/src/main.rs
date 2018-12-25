@@ -3,21 +3,17 @@ fn main() {
 }
 
 fn solve() -> i32 {
-    let mut num1 = 1;
-    let mut num2 = 2;
+    let mut fib = vec![1, 2];
 
-    let mut sum = num2;
-    while num1 + num2 < 4_000_000 {
-        let new = num1 + num2;
-        if new % 2 == 0 {
-            sum += new;
+    loop {
+        let new = fib.iter().rev().take(2).sum();
+        if new >= 4_000_000 {
+            break;
         }
-
-        num1 = num2;
-        num2 = new;
+        fib.push(new);
     }
 
-    return sum;
+    return fib.iter().filter(|&x| x % 2 == 0).sum();
 }
 
 #[cfg(test)]
