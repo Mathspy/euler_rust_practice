@@ -1,0 +1,4 @@
+[[package]]
+name = "largest_prime_factor"
+version = "0.1.0"
+
