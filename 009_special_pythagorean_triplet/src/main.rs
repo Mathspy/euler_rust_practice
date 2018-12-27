@@ -13,6 +13,8 @@ fn main() {
 }
 
 fn solve(sum: u32) -> u32 {
+    // Upper bound is calculated based on the Triangle Inequality Theorem: any 2 sides has to always be longer than the third
+    // https://en.wikipedia.org/wiki/Triangle_inequality
     let upper_bound = sum / 2;
 
     iproduct!(1..=upper_bound, 1..=upper_bound)
