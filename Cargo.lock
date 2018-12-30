@@ -50,6 +50,10 @@ name = "sum_square_difference"
 version = "0.1.0"
 
 [[package]]
+name = "summation_of_primes"
+version = "0.1.0"
+
+[[package]]
 name = "ten_thousand_and_first_prime"
 version = "0.1.0"
 

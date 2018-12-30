@@ -10,4 +10,5 @@ members = [
   "007_ten_thousand_and_first_prime",
   "008_largest_product_in_a_series",
   "009_special_pythagorean_triplet",
+  "010_summation_of_primes",
 ]
