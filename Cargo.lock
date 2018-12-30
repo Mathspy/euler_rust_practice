@@ -27,6 +27,10 @@ name = "largest_prime_factor"
 version = "0.1.0"
 
 [[package]]
+name = "largest_product_in_a_grid"
+version = "0.1.0"
+
+[[package]]
 name = "largest_product_in_a_series"
 version = "0.1.0"
 
