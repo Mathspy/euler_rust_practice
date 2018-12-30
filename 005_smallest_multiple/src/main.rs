@@ -1,4 +1,3 @@
-use std::cmp::Ordering;
 use std::collections::hash_map::{Entry, HashMap};
 use std::env;
 
@@ -27,11 +26,8 @@ fn solve(max: u32) -> u32 {
                 for (value, amount) in factors.into_iter() {
                     match total_factors.entry(value) {
                         Entry::Occupied(mut current_amount) => {
-                            match current_amount.get().cmp(&amount) {
-                                Ordering::Less => {
-                                    current_amount.insert(amount);
-                                }
-                                _ => (),
+                            if current_amount.get() < &amount {
+                                current_amount.insert(amount);
                             }
                         }
                         Entry::Vacant(_) => {
