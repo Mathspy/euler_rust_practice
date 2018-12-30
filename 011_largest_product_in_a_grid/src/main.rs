@@ -1,4 +1,4 @@
-// use std::env;
+use std::env;
 
 const SERIES: [[u32; 20]; 20] = [
     [
@@ -71,116 +71,109 @@ enum Direction {
 }
 
 fn main() {
-    // let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = env::args().collect();
 
-    // let num = args[1].parse().expect("Please input a valid integer");
+    let num = args[1].parse().expect("Please input a valid integer");
 
-    // println!("Calculate the sum of primes below: {}", num);
-    println!("{}", solve());
+    println!("Calculate the max product of sequences of size: {}", num);
+    println!("{}", solve(num));
 }
 
-fn solve() -> u32 {
+fn solve(num: u8) -> u32 {
     *[
-        find_largest_product(Direction::Horizontally),
-        find_largest_product(Direction::Vertically),
-        find_largest_product(Direction::Diagonally1),
-        find_largest_product(Direction::Diagonally2),
+        find_largest_product(Direction::Horizontally, num),
+        find_largest_product(Direction::Vertically, num),
+        find_largest_product(Direction::Diagonally1, num),
+        find_largest_product(Direction::Diagonally2, num),
     ]
     .into_iter()
     .max()
     .expect("Couldn't find the greatest product")
 }
 
-fn find_largest_product(dir: Direction) -> u32 {
+fn find_largest_product(dir: Direction, num: u8) -> u32 {
     let mut sequences = Vec::new();
+    let sequence_size = num as usize;
 
     for i in 0..20 {
         for j in 0..20 {
             sequences.push(match dir {
                 Direction::Horizontally => {
                     if let Some(inner) = SERIES.get(j) {
-                        if let None = inner.get(i + 3) {
+                        if let None = inner.get(i + (sequence_size - 1)) {
                             continue;
                         }
                     } else {
                         continue;
                     }
-                    [
-                        SERIES[j][i],
-                        SERIES[j][i + 1],
-                        SERIES[j][i + 2],
-                        SERIES[j][i + 3],
-                    ]
+                    (0..sequence_size)
+                        .into_iter()
+                        .map(|x| SERIES[j][i + x])
+                        .product()
                 }
                 Direction::Vertically => {
-                    if let Some(inner) = SERIES.get(j + 3) {
+                    if let Some(inner) = SERIES.get(j + (sequence_size - 1)) {
                         if let None = inner.get(i) {
                             continue;
                         }
                     } else {
                         continue;
                     }
-                    [
-                        SERIES[j][i],
-                        SERIES[j + 1][i],
-                        SERIES[j + 2][i],
-                        SERIES[j + 3][i],
-                    ]
+                    (0..sequence_size)
+                        .into_iter()
+                        .map(|x| SERIES[j + x][i])
+                        .product()
                 }
                 Direction::Diagonally1 => {
-                    if let Some(inner) = SERIES.get(j + 3) {
-                        if let None = inner.get(i + 3) {
+                    if let Some(inner) = SERIES.get(j + (sequence_size - 1)) {
+                        if let None = inner.get(i + (sequence_size - 1)) {
                             continue;
                         }
                     } else {
                         continue;
                     }
-                    [
-                        SERIES[j][i],
-                        SERIES[j + 1][i + 1],
-                        SERIES[j + 2][i + 2],
-                        SERIES[j + 3][i + 3],
-                    ]
+                    (0..sequence_size)
+                        .into_iter()
+                        .map(|x| SERIES[j + x][i + x])
+                        .product()
                 }
                 Direction::Diagonally2 => {
-                    if j < 3 {
+                    if j < (sequence_size - 1) {
                         continue;
                     }
-                    if let Some(inner) = SERIES.get(j - 3) {
-                        if let None = inner.get(i + 3) {
+                    if let Some(inner) = SERIES.get(j - (sequence_size - 1)) {
+                        if let None = inner.get(i + (sequence_size - 1)) {
                             continue;
                         }
                     } else {
                         continue;
                     }
-                    [
-                        SERIES[j][i],
-                        SERIES[j - 1][i + 1],
-                        SERIES[j - 2][i + 2],
-                        SERIES[j - 3][i + 3],
-                    ]
+                    (0..sequence_size)
+                        .into_iter()
+                        .map(|x| SERIES[j - x][i + x])
+                        .product()
                 }
             })
         }
     }
+
     sequences
         .into_iter()
-        .map(|arr| arr.into_iter().product())
         .max()
         .expect("Couldn't find the greatest product")
 }
 
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-//     #[test]
-//     fn produces_correct_answer_for_example() {
-//         assert_eq!(9603, solve(2));
-//     }
+    #[test]
+    fn produces_correct_answer_for_example() {
+        assert_eq!(9603, solve(2));
+    }
 
-//     #[test]
-//     fn produces_correct_answer_for_problem() {
-//         assert_eq!(142913828922, solve(2_000_000));
-//     }
-// }
+    #[test]
+    fn produces_correct_answer_for_problem() {
+        assert_eq!(70600674, solve(4));
+    }
+}
