@@ -14,6 +14,18 @@ function eulercargo() {
   # Do not use VCS because everything is already stored in a parent git folder
   cargo new $FOLDER_NAME --name $PROJECT_NAME --vcs none
 
+  # Reading all projects folder names and saving them as members of Cargo.toml's workspace
+  TOML="[workspace]\n\nmembers = [\n"
+  for folder in $(ls --ignore="*.*" --ignore target); do
+    TOML="$TOML  \"$folder\",\n"
+  done
+  TOML="$TOML]"
+  echo $TOML > Cargo.toml
+
+  # Explaining Cargo warning:
+  echo -e "\n\e[96mInfo:\e[0m a warning might appear about $PROJECT_NAME being missing from Cargo.toml."
+  echo "You can safely dismiss that as I just added it.\n"
+
   # Output the created names for confirmation
   echo "Created $PROJECT_NAME in $FOLDER_NAME. Goodluck!"
 }

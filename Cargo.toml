@@ -1,0 +1,13 @@
+[workspace]
+
+members = [
+  "001_multiples_of_3_and_5",
+  "002_even_fibonacci_numbers",
+  "003_largest_prime_factor",
+  "004_largest_palindrome_product",
+  "005_smallest_multiple",
+  "006_sum_square_difference",
+  "007_ten_thousand_and_first_prime",
+  "008_largest_product_in_a_series",
+  "009_special_pythagorean_triplet",
+]

@@ -4,6 +4,10 @@ version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "even_fibonacci_numbers"
+version = "0.1.0"
+
+[[package]]
 name = "itertools"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -12,11 +16,42 @@ dependencies = [
 ]
 
 [[package]]
+name = "largest_palindrome_product"
+version = "0.1.0"
+dependencies = [
+ "itertools 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "largest_prime_factor"
+version = "0.1.0"
+
+[[package]]
+name = "largest_product_in_a_series"
+version = "0.1.0"
+
+[[package]]
+name = "multiples_of_3_and_5"
+version = "0.1.0"
+
+[[package]]
+name = "smallest_multiple"
+version = "0.1.0"
+
+[[package]]
 name = "special_pythagorean_triplet"
 version = "0.1.0"
 dependencies = [
  "itertools 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "sum_square_difference"
+version = "0.1.0"
+
+[[package]]
+name = "ten_thousand_and_first_prime"
+version = "0.1.0"
 
 [metadata]
 "checksum either 1.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3be565ca5c557d7f59e7cfcf1844f9e3033650c929c6566f511e8005f205c1d0"
