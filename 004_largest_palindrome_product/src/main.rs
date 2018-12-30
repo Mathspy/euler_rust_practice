@@ -10,7 +10,10 @@ fn solve(upper_bound: u32) -> u32 {
         .map(|(x, y)| x * y)
         .filter(|&product| is_palindrome(product))
         .max()
-        .unwrap()
+        .expect(&format!(
+            "Couldn't find largest palindrome product for {}",
+            upper_bound
+        ))
 }
 
 // Algorithm credit:

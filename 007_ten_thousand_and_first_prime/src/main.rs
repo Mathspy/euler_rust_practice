@@ -21,7 +21,9 @@ fn solve(order: usize) -> u32 {
         num += 1;
     }
 
-    return *primes.last().unwrap();
+    return *primes
+        .last()
+        .expect(&format!("Couldn't find {}th prime", order));
 }
 
 fn is_prime(num: u32) -> bool {

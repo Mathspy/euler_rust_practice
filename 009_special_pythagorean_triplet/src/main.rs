@@ -22,7 +22,7 @@ fn solve(sum: u32) -> u32 {
         .filter(|(a, b, c)| c.fract() == 0.0 && a + b + *c as u32 == sum)
         .map(|(a, b, c)| [a, b, c as u32])
         .next()
-        .unwrap_or_else(|| panic!("Summation didn't have a valid pythagorean triplet"))
+        .expect("Summation didn't have a valid pythagorean triplet")
         .into_iter()
         .product()
 }

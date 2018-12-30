@@ -27,7 +27,10 @@ fn solve(mut num: u64) -> u64 {
 
     solution.push(num);
 
-    return solution.into_iter().max().unwrap();
+    return solution
+        .into_iter()
+        .max()
+        .expect(&format!("Couldn't find largest prime factor for {}", num));
 }
 
 #[cfg(test)]
